@@ -74,10 +74,24 @@ DB_NAME=tienda_db
 PORT=3000
 ```
 
-### 4. Crear la base de datos en MySQL
+### 4. Crear la base de datos en MySQL y el usuario con privilegios a esa BD
 
 ```sql
-CREATE DATABASE tienda_db;
+CREATE DATABASE tiendanode
+    DEFAULT CHARACTER SET = 'utf8mb4';
+
+
+
+CREATE USER 'usertiendanode'@'localhost' IDENTIFIED BY '123456';
+
+
+GRANT ALL PRIVILEGES ON tiendanode.* TO 'usertiendanode'@'localhost';
+
+
+SELECT user, host FROM mysql.user;
+
+
+SHOW GRANTS FOR 'usertiendanode'@'localhost';
 ```
 
 ### 5. Crear `src/app.js` — configuración de Express
